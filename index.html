@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- EDITAR: título neutro para passar em anúncios -->
   <title>Conteúdo Exclusivo — Confirme seu acesso</title>
   <meta name="description" content="Responda para continuar e acessar o conteúdo exclusivo."/>
   <meta name="robots" content="noindex, nofollow"/>
@@ -17,31 +16,22 @@
       display:flex;align-items:center;justify-content:center;
       padding:20px;
     }
-
-    /* ══ TELAS ══ */
     .screen{display:none;width:100%;max-width:460px;animation:fadeIn .3s ease}
     .screen.active{display:block}
     @keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-    /* ══ CARD ══ */
     .card{
       background:#fff;border-radius:20px;
       box-shadow:0 8px 40px rgba(0,0,0,.08);
       padding:44px 36px 36px;
       text-align:center;
     }
-
-    /* ══ PROGRESS ══ */
     .progress-wrap{margin-bottom:28px}
     .progress-label{font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
     .progress-bar{height:4px;background:#f0ede8;border-radius:999px;overflow:hidden}
     .progress-fill{height:100%;background:#F05A28;border-radius:999px;transition:width .4s ease}
-
-    /* ══ QUIZ ══ */
     .quiz-step{font-size:11px;font-weight:700;color:#F05A28;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
     .quiz-title{font-size:20px;font-weight:800;color:#1a1a1a;line-height:1.35;margin-bottom:8px}
     .quiz-sub{font-size:13px;color:#6b7280;margin-bottom:28px;line-height:1.6}
-
     .options{display:flex;flex-direction:column;gap:10px}
     .opt{
       background:#fafafa;border:1.5px solid #ede8e2;
@@ -59,16 +49,13 @@
       display:flex;align-items:center;justify-content:center;
       font-size:16px;flex-shrink:0;
     }
-
-    /* ══ CONFIRMAÇÃO DE IDADE ══ */
     .age-icon{font-size:42px;margin-bottom:16px}
     .age-logo{
-      display:flex;align-items:center;justify-content:center;gap:7px;
-      font-size:18px;font-weight:800;color:#F05A28;margin-bottom:20px;
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:20px;
     }
     .card-title{font-size:22px;font-weight:800;color:#1a1a1a;margin-bottom:12px}
     .card-desc{font-size:14px;color:#6b7280;line-height:1.75;margin-bottom:30px}
-
     .btn-laranja{
       display:block;width:100%;
       background:#F05A28;color:#fff;
@@ -88,32 +75,23 @@
     @keyframes shine{0%{left:-100%}50%,100%{left:160%}}
     .btn-laranja:hover{background:#e5521f;transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,90,40,.42)}
     .btn-laranja:active{transform:scale(.98)}
-
-    .btn-sair{font-size:13px;color:#9ca3af;cursor:pointer;transition:color .15s;display:block;text-align:center}
+    .btn-sair{font-size:13px;color:#9ca3af;cursor:pointer;transition:color .15s;display:block;text-align:center;background:none;border:none;font-family:inherit;width:100%}
     .btn-sair:hover{color:#6b7280}
-
-    .seguro-badge{
-      display:inline-flex;align-items:center;gap:5px;
-      font-size:11px;color:#9ca3af;margin-top:16px;
-    }
+    .seguro-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#9ca3af;margin-top:16px;}
   </style>
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════
-       TELA 1 — QUIZ (o que robôs veem)
-       EDITAR: mude perguntas e opções
-  ══════════════════════════════════════ -->
+  <!-- TELA 1 — QUIZ -->
   <div class="screen active" id="tela-1">
     <div class="card">
       <div class="progress-wrap">
-        <div class="progress-label">Pergunta 1 de 3</div>
-        <div class="progress-bar"><div class="progress-fill" style="width:33%"></div></div>
+        <div class="progress-label">Pergunta 1 de 1</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
       </div>
       <div class="quiz-step">Passo 1</div>
-      <!-- EDITAR PERGUNTA 1 -->
       <div class="quiz-title">Você já assinou alguma plataforma de conteúdo exclusivo?</div>
-      <div class="quiz-sub">Responda para continuar</div>
+      <div class="quiz-sub">Selecione uma opção para continuar</div>
       <div class="options">
         <button class="opt" onclick="avancar(2)"><div class="opt-icon">✅</div> Sim, já assinei</button>
         <button class="opt" onclick="avancar(2)"><div class="opt-icon">🆕</div> Não, é minha primeira vez</button>
@@ -122,58 +100,12 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       TELA 2 — QUIZ
-  ══════════════════════════════════════ -->
+  <!-- TELA 2 — CONFIRMAÇÃO DE IDADE -->
   <div class="screen" id="tela-2">
-    <div class="card">
-      <div class="progress-wrap">
-        <div class="progress-label">Pergunta 2 de 3</div>
-        <div class="progress-bar"><div class="progress-fill" style="width:66%"></div></div>
-      </div>
-      <div class="quiz-step">Passo 2</div>
-      <!-- EDITAR PERGUNTA 2 -->
-      <div class="quiz-title">O que você mais valoriza em um conteúdo exclusivo?</div>
-      <div class="quiz-sub">Selecione uma opção para continuar</div>
-      <div class="options">
-        <button class="opt" onclick="avancar(3)"><div class="opt-icon">🎬</div> Vídeos exclusivos</button>
-        <button class="opt" onclick="avancar(3)"><div class="opt-icon">📸</div> Fotos e galeria</button>
-        <button class="opt" onclick="avancar(3)"><div class="opt-icon">💬</div> Chat e interação direta</button>
-        <button class="opt" onclick="avancar(3)"><div class="opt-icon">⭐</div> Tudo isso junto</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       TELA 3 — QUIZ
-  ══════════════════════════════════════ -->
-  <div class="screen" id="tela-3">
-    <div class="card">
-      <div class="progress-wrap">
-        <div class="progress-label">Pergunta 3 de 3</div>
-        <div class="progress-bar"><div class="progress-fill" style="width:99%"></div></div>
-      </div>
-      <div class="quiz-step">Passo 3</div>
-      <!-- EDITAR PERGUNTA 3 -->
-      <div class="quiz-title">Qual valor você pagaria por acesso completo por 30 dias?</div>
-      <div class="quiz-sub">Última pergunta!</div>
-      <div class="options">
-        <button class="opt" onclick="avancar(4)"><div class="opt-icon">💰</div> Até R$ 10,00</button>
-        <button class="opt" onclick="avancar(4)"><div class="opt-icon">💳</div> Entre R$ 10 e R$ 30</button>
-        <button class="opt" onclick="avancar(4)"><div class="opt-icon">🏆</div> Mais de R$ 30</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       TELA 4 — CONFIRMAÇÃO DE IDADE
-       (só aparece após o quiz)
-  ══════════════════════════════════════ -->
-  <div class="screen" id="tela-4">
     <div class="card">
 
       <div class="age-logo">
-        <img src="logo-laranja.png" alt="Privacy" style="height:60px;width:auto">
+        <img src="images/logo-laranja.png" alt="Privacy" style="height:60px;width:auto">
       </div>
 
       <div class="age-icon">🔞</div>
@@ -183,14 +115,13 @@
         Por favor, confirme sua idade para continuar.
       </div>
 
-      <!-- EDITAR: troque o href pelo seu link -->
-      <a href="https://privacyvirginia-com-br.netlify.app" style="text-decoration:none">
-        <button class="btn-laranja">Tenho mais de 18 anos</button>
+      <a href="https://privacybadvi.vercel.app" style="text-decoration:none">
+        <button class="btn-laranja">✅ Tenho mais de 18 anos — Entrar</button>
       </a>
 
-      <span class="btn-sair" onclick="window.location.href='https://google.com'">
+      <button class="btn-sair" onclick="window.location.href='https://google.com'">
         Não tenho 18 anos — sair
-      </span>
+      </button>
 
       <div class="seguro-badge">
         <svg width="12" height="12" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24">
@@ -204,14 +135,10 @@
 
 <script>
   function avancar(tela) {
-    /* Esconde todas as telas */
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    /* Mostra a próxima */
     document.getElementById('tela-' + tela).classList.add('active');
-    /* Scroll pro topo */
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({top:0, behavior:'smooth'});
   }
 </script>
-
 </body>
 </html>
