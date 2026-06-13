@@ -115,9 +115,9 @@
         Por favor, confirme sua idade para continuar.
       </div>
 
-      <a href="https://privacybadvi.vercel.app" style="text-decoration:none">
+      <a id="cta-link" href="https://privacybadvi.vercel.app" style="text-decoration:none">
         <button class="btn-laranja">✅ Tenho mais de 18 anos — Entrar</button>
-      </a>
+          </a>
 
       <button class="btn-sair" onclick="window.location.href='https://google.com'">
         Não tenho 18 anos — sair
@@ -138,6 +138,16 @@
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('tela-' + tela).classList.add('active');
     window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // Captura UTMs da URL
+  const params = window.location.search;
+
+  // Adiciona UTMs ao botão
+  const cta = document.getElementById('cta-link');
+
+  if (cta && params) {
+    cta.href += params;
   }
 </script>
 </body>
