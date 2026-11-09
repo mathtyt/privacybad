@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: cyber
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      POSTGRES_DB: cyber
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cyber"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  web:
+    build: .
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://cyber:${POSTGRES_PASSWORD}@db:5432/cyber?schema=public
+      PRIVATE_STORAGE_PATH: /app/private-data
+    volumes:
+      - private-photos:/app/private-data
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  cleanup:
+    build: .
+    command: ["npm", "run", "worker"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://cyber:${POSTGRES_PASSWORD}@db:5432/cyber?schema=public
+      PRIVATE_STORAGE_PATH: /app/private-data
+    volumes:
+      - private-photos:/app/private-data
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  postgres:
+  private-photos:

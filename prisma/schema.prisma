@@ -1,0 +1,31 @@
+generator client {
+ provider = "prisma-client-js"
+}
+datasource db {
+ provider = "postgresql"
+ url = env("DATABASE_URL")
+}
+model Participation {
+ id String @id @default(uuid()) @db.Uuid
+ createdAt DateTime @default(now())
+ expiresAt DateTime
+ consentVersion String
+ consentTimestamp DateTime
+ photoStorageKey String? @unique
+ latitude Float?
+ longitude Float?
+ accuracy Float?
+ browser String
+ operatingSystem String
+ language String
+ screenResolution String
+ timezone String
+ deletionTokenHash String @unique
+ @@index([expiresAt])
+}
+model RateLimit {
+ key String @id
+ count Int
+ resetAt DateTime
+ @@index([resetAt])
+}
